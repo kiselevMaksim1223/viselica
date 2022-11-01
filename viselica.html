@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // обозначаем слова
+        var words = [
+            'вода',
+            'доктор',
+            'нора',
+            'страус'];
+        // выбираем рандомное слово, 
+        var word = words[Math.floor(Math.random() * words.length)];
+        //создаем пустой массив 
+        var FinalWord = [];
+        // заполняем пустой массив "_" символом, равным кол-ву букв в слове 
+        for (var i = 0; i < word.length; i++) {
+            FinalWord[i] = '_';
+        }
+        // создаем переменную равную кол-ву букв в слове 
+        var RemainingLetters = word.length;
+        // кол-во попыток 
+        var Trys = 10;
+        // Основной код
+        while (RemainingLetters > 0 && Trys > 0) {
+            // Показываем состояние игры
+            alert(FinalWord.join(' '));
+            // Запрашиваем вариант ответа
+            var Guess = prompt('Напишите букву или нажмите "Отмена" для выхода из игры!');
+            if (Guess === null) {
+                break;
+            } else if (Guess.length !== 1) {
+                alert('Введите только одну букву')
+            } else {
+                // проверка на регистр
+                Guess = Guess.toLowerCase();
+                Trys--;
+                // Обновляем FinalWord и remainingLetters для каждого
+                for (var j = 0; j < word.length; j++) {
+                    if (word[j] === Guess && FinalWord[j] === '_') {
+                        FinalWord[j] = Guess
+                        RemainingLetters--
+                    }
+                }
+            }
+        }
+        // вхождения угаданной буквы
+        alert(FinalWord.join(' '));
+        if (Trys > 0) {
+            alert('WIIIN')
+        } else {
+            alert('trys end')
+        }
+    </script>
+</body>
+
+</html>
